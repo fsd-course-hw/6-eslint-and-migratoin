@@ -1,10 +1,11 @@
 import { UiCetnerContentLayout } from "@/shared/ui/layouts/ui-center-content-layout";
 import { CreateUserForm } from "@/features/user/create";
-import { User, UsersList } from "@/entities/user";
+import { User } from "@/entities/user";
 import { useCheckSingIn } from "@/features/auth/check-sign-in";
 import { SignOutButton } from "@/features/auth/sign-out";
 import { SignInUserButton } from "@/features/auth/sing-in-user";
 import { RemoveUserButton } from "@/features/user/remove";
+import { UsersList } from "./user-list";
 
 export function UsersPage() {
   const { isUserSignIn } = useCheckSingIn();

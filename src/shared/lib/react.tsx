@@ -5,6 +5,10 @@ import {
   startTransition,
   useEffect,
   useState,
+  ReactNode,
+  Children,
+  isValidElement,
+  createElement,
 } from "react";
 
 export function useStrictContext<T>(context: Context<T | null>) {
@@ -48,4 +52,20 @@ export function useAppearanceDelay(
   }, [appearenceDelay, show, minDisplay]);
 
   return delayedShow;
+}
+
+export function ComposeChildren({ children }: { children: ReactNode }) {
+  const array = Children.toArray(children);
+  const last = array.pop();
+  return (
+    <>
+      {array.reduceRight(
+        (child, element) =>
+          isValidElement(element)
+            ? createElement(element.type, element.props, child)
+            : child,
+        last,
+      )}
+    </>
+  );
 }

@@ -11,7 +11,7 @@ export function UiCetnerContentLayout({
   return (
     <div
       className={clsx(
-        "container mx-auto max-w-[600px] m-full px-10",
+        "container mx-auto max-w-[1000px] m-full px-10",
         className,
       )}
     >

@@ -1,7 +1,5 @@
+import { User, UserPreview, useUsers } from "@/entities/user";
 import { ReactNode } from "react";
-import { useUsers } from "../model/users.store";
-import { User } from "../model/types";
-import { getAvatarUrl } from "./get-avatar-url";
 
 export function UsersList({
   userActions,
@@ -18,11 +16,10 @@ export function UsersList({
             key={user.id}
             className="px-5 py-2 border-b border-b-slate-3 flex gap-2 items-center "
           >
-            <div>
-              <img className="w-12 h-12" src={getAvatarUrl(user.avatarId)} />
+            <UserPreview size="md" name={user.name} avatarId={user.avatarId} />
+            <div className="ml-auto flex gap-2 shrink-0">
+              {userActions?.(user)}
             </div>
-            <div className="text-lg">{user.name}</div>
-            <div className="ml-auto flex gap-2">{userActions?.(user)}</div>
           </div>
         ))}
       </div>
