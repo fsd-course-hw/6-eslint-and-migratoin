@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import { create } from "zustand";
 import { Session } from "./types";
-import { sessionRepository } from "./sesson.repository";
+import { sessionRepository } from "./session.repository";
 
 type CreateSessionData = {
   name: string;
@@ -9,26 +9,26 @@ type CreateSessionData = {
   userId: string;
 };
 
-type SessonStore = {
-  currentSesson?: Session;
+type SessionStore = {
+  currentSession?: Session;
   loadSession: () => Promise<void>;
   removeSession: () => Promise<void>;
   createSession: (session: CreateSessionData) => Promise<void>;
 };
 
-export const useSesson = create<SessonStore>((set) => ({
-  currentSesson: undefined,
+export const useSession = create<SessionStore>((set) => ({
+  currentSession: undefined,
   loadSession: async () => {
     const session = await sessionRepository.getSession();
-    set({ currentSesson: session });
+    set({ currentSession: session });
   },
   removeSession: async () => {
     await sessionRepository.clearSession();
-    set({ currentSesson: undefined });
+    set({ currentSession: undefined });
   },
   createSession: async (data) => {
     const newSession = { ...data, id: nanoid() };
     await sessionRepository.saveSession(newSession);
-    set({ currentSesson: newSession });
+    set({ currentSession: newSession });
   },
 }));

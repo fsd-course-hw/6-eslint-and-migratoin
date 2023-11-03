@@ -8,6 +8,7 @@ export function UserSelect({
   userId,
   required,
   error,
+  filterOptions = () => true,
 }: {
   error?: string;
 
@@ -16,16 +17,16 @@ export function UserSelect({
   label?: string;
   onChangeUserId: (id?: string) => void;
   required?: boolean;
+  filterOptions?: (option: User) => boolean;
 }) {
   const user = useUsers((s) => (userId ? s.getUserById(userId) : undefined));
-  const users = useUsers((s) => s.users);
+  const users = useUsers((s) => s.users.filter(filterOptions));
 
   const options = required ? users : [undefined, ...users];
 
   const onChangeUser = (user?: User) => {
     onChangeUserId(user?.id);
   };
-  console.log(options);
 
   return (
     <UiSelect

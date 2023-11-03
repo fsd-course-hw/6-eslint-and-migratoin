@@ -1,33 +1,19 @@
 import { UiCetnerContentLayout } from "@/shared/ui/layouts/ui-center-content-layout";
-import { CreateUserForm } from "@/features/user/create";
-import { User } from "@/entities/user";
-import { useCheckSingIn } from "@/features/auth/check-sign-in";
-import { SignOutButton } from "@/features/auth/sign-out";
-import { SignInUserButton } from "@/features/auth/sing-in-user";
-import { RemoveUserButton } from "@/features/user/remove";
-import { UsersList } from "./user-list";
+import { CreateUserForm, UsersList } from "@/features/users-list";
+import { UsersPageProviers } from "./users-providers";
 
 export function UsersPage() {
-  const { isUserSignIn } = useCheckSingIn();
-
-  const getUserActions = (user: User) => {
-    return (
-      <>
-        {isUserSignIn(user) ? (
-          <SignOutButton />
-        ) : (
-          <SignInUserButton user={user} />
-        )}
-        <RemoveUserButton userId={user.id} />
-      </>
-    );
-  };
-
   return (
-    <UiCetnerContentLayout className="py-10">
-      <h1 className="text-3xl ">Пользователи</h1>
-      <CreateUserForm className="mt-10" />
-      <UsersList userActions={getUserActions} />
-    </UiCetnerContentLayout>
+    <UsersPageProviers>
+      <UiCetnerContentLayout className="py-10">
+        <h1 className="text-3xl ">Пользователи</h1>
+        <h2 className="text-lg mb-2 font-semibold mt-10">
+          Добавить пользователя
+        </h2>
+        <CreateUserForm />
+        <h2 className="text-lg mb-2 font-semibold mt-10">Все пользователи</h2>
+        <UsersList />
+      </UiCetnerContentLayout>
+    </UsersPageProviers>
   );
 }

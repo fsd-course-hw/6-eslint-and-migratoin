@@ -31,7 +31,7 @@ export function UiModal({
     <div
       onClick={handleClick}
       className={clsx(
-        "fixed inset-0 bg-slate-900/60 backdrop-blur pt-10 pb-10 overflow-y-auto",
+        "fixed inset-0 z-50 bg-slate-900/60 backdrop-blur pt-10 pb-10 overflow-y-auto",
         className,
       )}
     >

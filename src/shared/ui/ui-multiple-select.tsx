@@ -50,8 +50,10 @@ export function UiMultipleSelect<T extends BaseOption>({
       <Combobox value={value} onChange={onChange} multiple>
         <div className="relative rounded border border-slate-300 focus-within:border-teal-600 h-10 outline-none flex items-center ">
           {renderPreview?.(value) ??
-            value?.map((v) => (
-              <div className="px-2 whitespace-nowrap">{getLabel(v)}</div>
+            value?.map((v, i) => (
+              <div key={i} className="px-2 whitespace-nowrap">
+                {getLabel(v)}
+              </div>
             ))}
           <Combobox.Input
             className={
@@ -70,7 +72,7 @@ export function UiMultipleSelect<T extends BaseOption>({
           <Combobox.Options className="absolute top-full mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
             {filteredOptions?.map((option) => (
               <Combobox.Option
-                key={option.id}
+                key={option.id ?? "empty"}
                 value={option}
                 className={({ active, selected }) =>
                   clsx(

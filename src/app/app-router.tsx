@@ -1,5 +1,3 @@
-import { BoardPage } from "@/pages/board";
-import { BoardsPage } from "@/pages/boards";
 import { UsersPage } from "@/pages/users";
 import { RootLayout } from "@/widgets/root-layout";
 import {
@@ -8,6 +6,8 @@ import {
   redirect,
 } from "react-router-dom";
 import { ROUTER_PATHS } from "@/shared/constants/routes";
+import { BoardsPage } from "@/pages/boards";
+import { BoardPage } from "@/pages/board";
 
 const router = createBrowserRouter([
   {

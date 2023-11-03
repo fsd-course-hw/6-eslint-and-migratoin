@@ -4,16 +4,7 @@ import { Board, BoardPartial } from "./types";
 const BOARDS_STORAGE_KEY = "boards_storsage";
 export const boardsRepository = {
   getBoards: async (): Promise<BoardPartial[]> => {
-    return persistStorage
-      .getItemSafe<Board[]>(BOARDS_STORAGE_KEY, [])
-      .then((boards) =>
-        boards.map((board) => ({
-          id: board.id,
-          name: board.name,
-          editorsIds: board.editorsIds,
-          ownerId: board.ownerId,
-        })),
-      );
+    return persistStorage.getItemSafe<Board[]>(BOARDS_STORAGE_KEY, []);
   },
   getBoard: async (id: string): Promise<Board | undefined> => {
     return persistStorage

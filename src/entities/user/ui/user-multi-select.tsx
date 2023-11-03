@@ -31,7 +31,12 @@ export function UserMultiSelect({
       getLabel={(user) => user.name}
       renderPreview={(users) =>
         users?.map((user) => (
-          <UserPreview className="shrink-0 px-1" size="sm" {...user} />
+          <UserPreview
+            key={user.id}
+            className="shrink-0 px-1"
+            size="sm"
+            {...user}
+          />
         ))
       }
       renderOption={(user) => <UserPreview size="sm" {...user} />}

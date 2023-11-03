@@ -7,7 +7,7 @@ export function RootLayout() {
   return (
     <div className="min-h-screen flex flex-col">
       <UiHeader links={<NavLinks />} right={<Profile />} />
-      <main className="grow">
+      <main className="grow flex flex-col">
         <Outlet />
       </main>
     </div>

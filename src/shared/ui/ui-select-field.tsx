@@ -35,6 +35,10 @@ export function UiSelect<T extends BaseOption | undefined>({
 }: UiSelectProps<T>) {
   const id = useId();
 
+  const handleChange = (value: T | null) => {
+    onChange((value ?? undefined) as T);
+  };
+
   return (
     <div className={clsx(className, "flex flex-col gap-1")}>
       {label && (
@@ -42,7 +46,7 @@ export function UiSelect<T extends BaseOption | undefined>({
           {label}
         </label>
       )}
-      <Listbox value={value} onChange={onChange}>
+      <Listbox value={value ?? null} onChange={handleChange}>
         <div className="relative rounded border border-slate-300 focus-within:border-teal-600 h-10 outline-none z-10">
           <Listbox.Button
             id={id}
@@ -63,7 +67,7 @@ export function UiSelect<T extends BaseOption | undefined>({
           <Listbox.Options className="absolute top-full mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
             {options?.map((option) => (
               <Listbox.Option
-                key={option?.id}
+                key={option?.id ?? "empty"}
                 value={option}
                 className={({ active, selected }) =>
                   clsx(
