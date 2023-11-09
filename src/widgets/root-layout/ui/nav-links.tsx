@@ -1,4 +1,4 @@
-import { ROUTER_PATHS } from "@/shared/constants/routes";
+import { ROUTER_PATHS } from "@/shared/constants";
 import clsx from "clsx";
 import { NavLink } from "react-router-dom";
 

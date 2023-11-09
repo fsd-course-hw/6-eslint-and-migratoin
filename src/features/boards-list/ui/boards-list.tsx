@@ -1,6 +1,6 @@
 import { useBoards } from "@/entities/board";
 import { AvatarsList, UserPreview, useUsers } from "@/entities/user";
-import { ROUTER_PATHS } from "@/shared/constants/routes";
+import { ROUTER_PATHS } from "@/shared/constants";
 import { Link, generatePath } from "react-router-dom";
 import { useBoardsListDeps } from "../deps";
 import { UpdateBoardButton } from "./update-board-button";

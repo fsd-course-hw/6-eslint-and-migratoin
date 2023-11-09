@@ -5,7 +5,7 @@ import {
   createBrowserRouter,
   redirect,
 } from "react-router-dom";
-import { ROUTER_PATHS } from "@/shared/constants/routes";
+import { ROUTER_PATHS } from "@/shared/constants";
 import { BoardsPage } from "@/pages/boards";
 import { BoardPage } from "@/pages/board";
 
