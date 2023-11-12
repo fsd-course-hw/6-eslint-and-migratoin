@@ -39,7 +39,7 @@ export function BoardDepsProvider({
 }) {
   const removeTask = useTasks((s) => s.removeTask);
   const createTask = useTasks((s) => s.createTask);
-  const { modal, updateTask } = useUpdateTaskModal();
+  const updateTaskModal = useUpdateTaskModal();
 
   return (
     <boardDepsContext.Provider
@@ -51,12 +51,12 @@ export function BoardDepsProvider({
           await removeTask(id);
         },
         updateBoardCard: async (board) => {
-          return await updateTask(board.id);
+          return await updateTaskModal.updateTask(board.id);
         },
       }}
     >
       {children}
-      {modal}
+      {updateTaskModal.modal}
     </boardDepsContext.Provider>
   );
 }

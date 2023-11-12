@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import { UserPreview } from "@/entities/user";
 import { useBoardUsers } from '../../lib/use-board-users.ts';
-import { useHasBoardAccess } from '@/features/dnd-board/lib/use-has-board-access.ts';
+import { useHasBoardAccess } from "../../lib/use-has-board-access.ts";
+import { UpdateBoardEditorsButton } from "./update-board-editors-button.tsx"
 
 export function BoardUsers({ className }: { className?: string }) {
   const { owner, editors} = useBoardUsers();
@@ -37,6 +38,7 @@ export function BoardUsers({ className }: { className?: string }) {
                 <UserPreview name={editor.name} avatarId={editor.avatarId} size="md" />
               </div>)}
         </div>
+        <UpdateBoardEditorsButton />
       </div>
     </div>
   );

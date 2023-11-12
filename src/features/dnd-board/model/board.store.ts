@@ -20,6 +20,8 @@ export type BoardStore = {
     end: { colId: string; index: number },
   ) => Promise<void>;
 
+  updateBoardEditors: (editorsIds: string[]) => Promise<void>;
+
   reloadBoard: () => Promise<void>;
   saveBoard: (value: Board) => Promise<void>;
 };
@@ -169,6 +171,21 @@ export const createBoardStore = ({
         draft.cols[startColIndex].items.splice(start.index, 1);
         draft.cols[endColIndex].items.splice(end.index, 0, item);
       })(board);
+
+      set({
+        board: newBoard,
+      });
+
+      return get().saveBoard(newBoard);
+    },
+
+    updateBoardEditors: async (editorsIds: string[]) => {
+      const board = get().board;
+
+      const newBoard: Board = {
+        ...board,
+        editorsIds
+      }
 
       set({
         board: newBoard,
