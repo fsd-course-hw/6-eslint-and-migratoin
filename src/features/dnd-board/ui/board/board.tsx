@@ -2,12 +2,20 @@ import clsx from "clsx";
 import { useBoardStore } from "../../model/use-board-store";
 import { BoardColumn } from "./board-column";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import {useHasBoardAccess} from '@/features/dnd-board/lib/use-has-board-access.ts';
 
 export function Board({ className }: { className?: string }) {
   const boardStore = useBoardStore();
   const columns = boardStore.useSelector((s) => s.board.cols);
   const moveColumn = boardStore.useSelector((s) => s.moveColumn);
   const moveCard = boardStore.useSelector((s) => s.moveBoardCard);
+  const hasBoardAccess = useHasBoardAccess();
+
+  if (!hasBoardAccess) {
+    return <div className={clsx("flex  bg-gray-100 rounded-xl p-4 px-2", className)}>
+      <p className="text-base px-3.5">У Вас нет прав для просмотра данной доски</p>
+    </div>
+  }
 
   return (
     <DragDropContext

@@ -1,12 +1,18 @@
 import clsx from "clsx";
 import { UserPreview } from "@/entities/user";
-import { useBoardStore } from '../../model/use-board-store.tsx';
 import { useBoardUsers } from '../../lib/use-board-users.ts';
+import { useHasBoardAccess } from '@/features/dnd-board/lib/use-has-board-access.ts';
 
 export function BoardUsers({ className }: { className?: string }) {
-  const boardStore = useBoardStore();
-  const board = boardStore.useSelector((s) => s.board);
-  const { owner, editors} = useBoardUsers(board);
+  const { owner, editors} = useBoardUsers();
+  const hasBoardAccess = useHasBoardAccess();
+
+  if (!hasBoardAccess) {
+    return  <div className={clsx("flex flex-col gap-2", className)}>
+      <h2 className="text-2xl">Пользователи доски</h2>
+      <p className="text-base">У Bас нет прав для просмотра пользователей этой доски</p>
+    </div>
+  }
 
   return (
     <div className={clsx("flex flex-col gap-2", className)}>
