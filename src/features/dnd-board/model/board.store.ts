@@ -22,6 +22,8 @@ export type BoardStore = {
 
   updateBoardEditors: (editorsIds: string[]) => Promise<void>;
 
+  filterBoardCards: (searchQuery: string) => Promise<void>;
+
   reloadBoard: () => Promise<void>;
   saveBoard: (value: Board) => Promise<void>;
 };
@@ -192,6 +194,32 @@ export const createBoardStore = ({
       });
 
       return get().saveBoard(newBoard);
+    },
+
+    filterBoardCards: async (searchQuery: string) => {
+       await get().reloadBoard();
+
+       if (!searchQuery) {
+         return;
+       }
+
+       const board = get().board;
+
+       const loweredSearchQuery = searchQuery.toLowerCase();
+
+       const newBoardCols = board.cols.map(({ items, ...restCol }) => ({
+         ...restCol,
+         items: items.filter((item) => item.title.toLowerCase().includes(loweredSearchQuery))
+       }));
+
+       const newBoard: Board = {
+         ...board,
+         cols: newBoardCols,
+       }
+
+      set({
+        board: newBoard,
+      });
     },
 
     reloadBoard: async () => {

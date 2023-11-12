@@ -14,7 +14,5 @@ export const useCanUpdateBoardEditors = (): boolean => {
 
   const isOwner = ownerId === userId;
 
-  console.log(isOwner);
-
   return isOwner;
 }

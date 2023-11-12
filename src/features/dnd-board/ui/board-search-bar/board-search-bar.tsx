@@ -1,22 +1,27 @@
 import clsx from 'clsx';
-import {FormEventHandler, useState} from 'react';
-import { UiButton } from '@/shared/ui/ui-button.tsx';
-import { UiTextField } from '@/shared/ui/ui-text-field.tsx';
+import { FormEventHandler, useState } from 'react';
+import { UiButton } from "@/shared/ui/ui-button";
+import { UiTextField } from "@/shared/ui/ui-text-field";
+import { useBoardStore } from "../../model/use-board-store.tsx";
 
 export function BoardSearchBar({ className }: { className?: string }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [submittedSearchQuery, setSubmittedSearchQuery] = useState('');
+  const boardStore = useBoardStore();
+  const filterBoardCards = boardStore.useSelector((s) => s.filterBoardCards);
+  const reloadBoard = boardStore.useSelector((s) => s.reloadBoard);
 
   const onSearch: FormEventHandler<HTMLFormElement> = (evt) => {
     evt?.preventDefault();
     setSubmittedSearchQuery(searchQuery);
-    console.log('submit');
+    filterBoardCards(searchQuery);
   };
 
   const onReset: FormEventHandler<HTMLFormElement> = (evt) => {
     evt?.preventDefault();
     setSearchQuery('');
     setSubmittedSearchQuery('');
+    reloadBoard();
   };
 
   const isSearchDisabled = searchQuery === submittedSearchQuery;
