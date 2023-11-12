@@ -1,5 +1,5 @@
 import { useSession } from "@/entities/session";
-import { Board, BoardActions, useFetchBoard, BoardUsers } from "@/features/dnd-board";
+import { Board, BoardActions, useFetchBoard, BoardUsers, BoardSearchBar } from "@/features/dnd-board";
 import { ComposeChildren } from "@/shared/lib/react";
 import { UiPageSpinner } from "@/shared/ui/ui-page-spinner";
 import { useParams } from "react-router-dom";
@@ -33,6 +33,7 @@ export function BoardPage() {
         <h1 className="text-3xl mb-4 shrink-0">{board?.title}</h1>
         <BoardUsers className="mb-6" />
         <BoardActions className="shrink-0 mb-2" />
+        <BoardSearchBar className="mb-2" />
         <Board className="basis-0 grow" />
       </div>
     </ComposeChildren>
