@@ -33,8 +33,8 @@ module.exports = {
       },
       {
         type: "features",
-        pattern: "features/*",
-        capture: ["feature"],
+        pattern: "features/*/*",
+        capture: ["group", "feature"],
       },
       {
         type: "entities",

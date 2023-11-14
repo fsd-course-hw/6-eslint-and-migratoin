@@ -1,5 +1,5 @@
-import { subject, useAbility } from "@/features/auth";
-import { boardsListDepsContext } from "@/features/boards-list";
+import { subject, useAbility } from "@/features/group-1/auth";
+import { boardsListDepsContext } from "@/features/group-1/boards-list";
 
 export function BoardListProvider({ children }: { children: React.ReactNode }) {
   const ability = useAbility();

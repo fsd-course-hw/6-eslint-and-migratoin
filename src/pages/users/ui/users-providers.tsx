@@ -5,8 +5,8 @@ import {
   SignOutButton,
   subject,
   useAbility,
-} from "@/features/auth";
-import { usersListDespContext } from "@/features/users-list";
+} from "@/features/group-1/auth";
+import { usersListDespContext } from "@/features/group-2/users-list";
 
 export const UsersPageProviers = ({
   children,

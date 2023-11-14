@@ -5,11 +5,11 @@ import {
   boardDepsContext,
   boardStoreContext,
   useBoardStoreFactory,
-} from "@/features/dnd-board";
+} from "@/features/group-1/dnd-board";
 import {
   updateTaskModalDeps,
   useUpdateTaskModal,
-} from "@/features/update-task-modal";
+} from "@/features/group-2/update-task-modal";
 
 export function TaskEditorProvider({
   children,

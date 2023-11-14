@@ -1,7 +1,7 @@
 import { UiCetnerContentLayout } from "@/shared/ui/layouts/ui-center-content-layout";
 import { BoardListProvider } from "./board-list-providers";
-import { BoardsList, CreateBoardButton } from "@/features/boards-list";
-import { useAbility } from "@/features/auth";
+import { BoardsList, CreateBoardButton } from "@/features/group-1/boards-list";
+import { useAbility } from "@/features/group-1/auth";
 
 export function BoardsPage() {
   const ability = useAbility();
