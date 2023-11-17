@@ -1,5 +1,5 @@
 import { useSession } from "@/entities/session";
-import { Board, BoardActions, useFetchBoard } from "@/features/dnd-board";
+import { Board, BoardActions, useFetchBoard } from "@/features/group-1/dnd-board";
 import { ComposeChildren } from "@/shared/lib/react";
 import { UiPageSpinner } from "@/shared/ui/ui-page-spinner";
 import { useParams } from "react-router-dom";

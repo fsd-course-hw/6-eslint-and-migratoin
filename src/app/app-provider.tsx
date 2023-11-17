@@ -1,4 +1,4 @@
-import { abilityContext, useAbilityFactory } from "@/features/auth";
+import { abilityContext, useAbilityFactory } from "@/features/group-1/auth";
 import { ComposeChildren } from "@/shared/lib/react";
 import { Confirmations } from "@/widgets/confirmations";
 
