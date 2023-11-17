@@ -11,7 +11,6 @@ export function UserSelect({
   filterOptions = () => true,
 }: {
   error?: string;
-
   className?: string;
   userId?: string;
   label?: string;
