@@ -4,7 +4,10 @@ import { MongoAbility, MongoQuery, defineAbility } from "@casl/ability";
 type CRUD = "create" | "read" | "update" | "delete";
 type Abilities =
   | ["sign-in-as" | "sign-out", "User" | { id: string }]
-  | [CRUD, "Board" | { ownerId: string; editorsIds: string[] }]
+  | [
+      CRUD | "update-access",
+      "Board" | { ownerId: string; editorsIds: string[] },
+    ]
   | [CRUD, "Task" | { authorId: string }];
 type Conditions = MongoQuery;
 
@@ -37,6 +40,9 @@ export const abilityFactory = (session: Session | undefined) => {
     });
 
     can("update", "Board", {
+      ownerId: userId,
+    });
+    can("update-access", "Board", {
       ownerId: userId,
     });
 
