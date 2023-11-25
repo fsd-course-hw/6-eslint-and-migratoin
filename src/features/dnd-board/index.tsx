@@ -6,3 +6,4 @@ export {
   useFetchBoard,
 } from "./model/use-board-store";
 export { boardDepsContext } from "./deps";
+export { UserList } from './ui/user-list';
