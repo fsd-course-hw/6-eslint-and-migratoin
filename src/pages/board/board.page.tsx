@@ -8,6 +8,7 @@ import {
   BoardStoreProvider,
   TaskEditorProvider,
 } from "./providers";
+import { useCanViewBoard } from "./lib/can-view-board";
 
 export function BoardPage() {
   const params = useParams<"boardId">();
@@ -15,6 +16,8 @@ export function BoardPage() {
   const sesson = useSession((s) => s.currentSession);
 
   const { board } = useFetchBoard(boardId);
+  
+  const canViewBoard = useCanViewBoard(sesson, board);
 
   if (!sesson) {
     return <div>Не авторизован</div>;
@@ -24,8 +27,12 @@ export function BoardPage() {
     return <UiPageSpinner />;
   }
 
-  return (
-    <ComposeChildren>
+
+  if(!canViewBoard) {
+    return <div>У ВАС НЕТ ПРАВ ДОСТУПА!</div>
+  }
+
+  return  <ComposeChildren>
       <TaskEditorProvider board={board} />
       <BoardDepsProvider sesson={sesson} />
       <BoardStoreProvider board={board} />
@@ -35,5 +42,4 @@ export function BoardPage() {
         <Board className="basis-0 grow" />
       </div>
     </ComposeChildren>
-  );
 }
