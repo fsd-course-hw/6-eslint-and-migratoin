@@ -2,12 +2,14 @@ import clsx from "clsx";
 import { useBoardStore } from "../../model/use-board-store";
 import { BoardColumn } from "./board-column";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { useFilterCards } from "../../model/use-filter-cards";
 
-export function Board({ className }: { className?: string }) {
+export function Board({ className, searchText }: { className?: string; searchText: string }) {
   const boardStore = useBoardStore();
   const columns = boardStore.useSelector((s) => s.board.cols);
   const moveColumn = boardStore.useSelector((s) => s.moveColumn);
   const moveCard = boardStore.useSelector((s) => s.moveBoardCard);
+  const filteredColumns = useFilterCards({searchText, columns});
 
   return (
     <DragDropContext
@@ -40,7 +42,7 @@ export function Board({ className }: { className?: string }) {
             ref={innerRef}
             className={clsx("flex  bg-gray-100 rounded-xl p-4 px-2", className)}
           >
-            {columns.map((col, index) => (
+            {filteredColumns.map((col, index) => (
               <BoardColumn key={col.id} col={col} index={index} />
             ))}
             {placeholder}
